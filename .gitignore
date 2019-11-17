@@ -3,6 +3,7 @@
 sublime-project
 sublime-workspace
 tmp
+.idea/*
 snapshots
 project/project
 project/target
