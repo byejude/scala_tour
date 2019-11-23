@@ -18,7 +18,7 @@ def doWork(index: Int) = {
   }
   future onComplete {
     case Success(x) =>  println(s"success and return is $x")
-    case Failure(t) => println(s"An error has occured: $t"  )
+    case Failure(t) => println(s"An error has occured: $t")
   }
 }
 
