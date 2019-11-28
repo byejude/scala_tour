@@ -19,6 +19,12 @@ def seqToString[T](seq: Seq[T]): String = seq match {
     println(s"head is $head and tail is $tail")
     s"$tail +: " + seqToString(head)
   }
+
+  //函数表达
+  case +:(head, tail) => {
+      println(s"head is $head and tail is $tail")
+      s"$head +: " + seqToString(tail)
+  }
   case Nil => "Nil"
 }
 for (seq <- Seq(
