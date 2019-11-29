@@ -33,14 +33,21 @@ package com.tulip.implicits {
         import javadb.JRow
         //相当于包装了Javadb 而 不显式出现
         implicit class SRow(jrow: JRow) {
+            //包装方法名需要一致
             def get[T](colName: String)(implicit toT: (JRow,String) => T): T =
                 toT(jrow, colName)
         }
-        implicit val jrowToxInt: (JRow,String) => Int =
-            (jrow: JRow, colName: String) => jrow.getInt(colName)
+            def printColName(colName: String) = println(s"colname is $colName")
+
+        implicit def jrowToxInt: (JRow,String) => Int =
+            (jrow: JRow, colName: String) =>{
+              printColName(colName)
+              jrow.getInt(colName)
+            }
+        //val 与 def 都视为隐式参数
         implicit val jrowToxDouble: (JRow,String) => Double =
             (jrow: JRow, colName: String) => jrow.getDouble(colName)
-        implicit val jrowToxString: (JRow,String) => String =
+        implicit def jrowToxString: (JRow,String) => String =
             (jrow: JRow, colName: String) => jrow.getText(colName)
     }
 
@@ -48,6 +55,7 @@ object DB {
     import implicits._
     def main(args: Array[String]) = {
         val row = javadb.JRow("one" -> 1, "two" -> 2.2, "three" -> "THREE!")
+        //scala 会根据返回类型推断为使用哪一个隐式函数(参数)
         val oneValue1: Int = row.get("one")
         val twoValue1: Double = row.get("two")
         val threeValue1: String = row.get("three")
