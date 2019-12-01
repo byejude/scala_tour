@@ -15,10 +15,10 @@ def seqToString[T](seq: Seq[T]): String = seq match {
 //  }
 
   //:+ 列头元尾
-  case head :+ tail => {
-    println(s"head is $head and tail is $tail")
-    s"$tail +: " + seqToString(head)
-  }
+  // case head :+ tail => {
+  //   println(s"head is $head and tail is $tail")
+  //   s"$tail +: " + seqToString(head)
+  // }
 
   //函数表达
   case +:(head, tail) => {
