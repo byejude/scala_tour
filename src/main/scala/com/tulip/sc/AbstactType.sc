@@ -56,4 +56,4 @@ def getFiles(inputs: File*): collection.Seq[File] = {
 
 println(getFiles(new File("./")))
 println(new StringBulkReader("hello sweetie~").read)
-println(new FileBulkReader(new File("./src/main/scala/com/tulip/sc/factorial.sc")).read)
+println(new FileBulkReader(new File("./src/main/scala/com/tulip/sc/Factorial.sc")).read)
