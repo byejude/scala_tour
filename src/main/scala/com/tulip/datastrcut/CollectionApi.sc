@@ -37,7 +37,7 @@ println("分组= " +List(1, 3, 5).groupBy(_ % 2))
 println(list.map(_ * 2)) //List(2, 4, 6, 8, 10, 12)
 println(list.map((_, 1))) //List((1,1), (2,1), (3,1), (4,1), (5,1), (6,1))
 
-//TODO  flatMap 扁平化  数->可迭代 整体，拆成一个个的个体变成可迭代的集合
+//TODO  flatMap 扁平化  数->可迭代 整体，拆成一个个的个体变成可迭代的集合,其原集合类型需要一致
 val list2 = List(List(1,2), List(3, 4), List(5, 6)) // ==> List(1,2,3,4,5,6)
 // in : List, out : Iterator
 println(s"list2 is $list2") //List(List(1, 2), List(3, 4), List(5, 6))
