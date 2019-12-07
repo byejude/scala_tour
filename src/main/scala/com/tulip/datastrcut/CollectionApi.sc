@@ -121,3 +121,20 @@ def test(i: Int): Boolean = {
 }
 println("过滤=" + a.filter(test)) //简化如下
 println(a.filter(_ % 2 == 1))
+
+
+//TODO 对后面的元素进行操作，并聚合结果
+val rdd1 = List(1,2,3,4,5)
+val result: Int = rdd1.aggregate(0)(
+  (acc, number) => {
+    val res1 = acc + number
+    println("par    " + acc + " + " + number+" = "+res1)
+    res1
+  },
+  (par1, par2) => {
+    val res2 = par1 + par2
+    println("com    " + par1 + " + " + par2+" = "+res2)
+    res2
+  }
+)
+println(result)
