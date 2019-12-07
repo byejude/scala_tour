@@ -1,3 +1,4 @@
+//todo  以下俩个例子考虑递归的方向
 def reduceLeft[A,B](s: Seq[A])(f: A => B): Seq[B] = {
   @annotation.tailrec
   def rl(accum: Seq[B], s2: Seq[A]): Seq[B] = s2 match {
