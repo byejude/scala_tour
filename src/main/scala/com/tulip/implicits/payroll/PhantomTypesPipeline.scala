@@ -22,7 +22,7 @@ object CalculatePayroll2 {
       minusTax flow
       minusFinalDeuctions
      // pay1 flow minus401k  == minus401k(pay1)
-    val xpay4 = minusFinalDeuctions(minusTax(minusInsurance(minus401k(start(e)))))
+    //val xpay4 = minusFinalDeuctions(minusTax(minusInsurance(minus401k(start(e)))))
     val twoWeekGross = e.annualSalary / 26.0F
     val twoWeekNet = pay.netPay
     val percent = (twoWeekNet / twoWeekGross) * 100
