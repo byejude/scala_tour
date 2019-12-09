@@ -20,5 +20,11 @@ for {i1 <- positiveValidx(5)
      i4 <- positiveValidx(-2 * i3) // 错误!
      } yield (i1 + i2 + i3 + i4)
 
+//一旦出现错误failure则只会统计failure
+//   * success(v1) +++ success(v2) → success(v1 + v2)
+//   * success(v1) +++ failure(v2) → failure(v2)
+//   * failure(v1) +++ success(v2) → failure(v1)
+//   * failure(v1) +++ failure(v2) → failure(v1 + v2)
 positiveValidx(5) +++ positiveValidx(10) +++ positiveValidx(25)
 positiveValidx(5) +++ positiveValidx(-10) +++ positiveValidx(25) +++ positiveValidx(-30)
+positiveValidx(5) +++ positiveValidx(-10)
