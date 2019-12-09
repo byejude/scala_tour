@@ -43,7 +43,7 @@ val list2 = for {
 } yield (i, i10)
 println(list2)
 
-
+//TODO for循环的模式匹配
 val ignoreRegex = """^\s*(#.*|\s*)$""".r
 val kvRegex = """^\s*([^=]+)\s*=\s*([^#]+)\s*.*$""".r
 val properties = """
@@ -61,3 +61,34 @@ val kvPairs = for {
   kvRegex(key, value) = prop
 } yield (key.trim, value.trim)
 
+//TODO for 与Option 当处理Seq[Option[Int]] 可以使用Some(i)去接也可以去直接使用变量x去接
+val results: Seq[Option[Int]] = Vector(Some(10),None,None,Some(21),Some(33))
+val result2 = Vector(10,0,0,21,33)
+//如果for循环返回的some(i) 则withFilter改写case None = true 与否结果都会去过滤None
+val result3 = for{
+  x <- results.withFilter {
+    case Some(i) => {
+      println("Some")
+      true}
+    case None =>{
+      println("None")
+      true}
+  }
+}yield x
+
+println("result3"+result3)
+
+//TODO for处理Seq中的None 但是不处理单个None
+def positive(i: Int): Option[Int] =
+  if (i > 0) Some(i) else None
+for {
+  i1 <- positive(5)
+  i2 <- positive(10 * i1)
+  i3 <- positive(25 * i2)
+  i4 <- positive(2 * i3)
+} yield (i1 + i2 + i3 + i4)
+
+for {
+  i1 <- Seq(positive(5),positive(-1),positive(5))
+ // i2 <- positive(-2)
+} println(i1)
