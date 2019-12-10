@@ -32,7 +32,35 @@ package com.tulip.oop
   * 除此之此，case class与其它普通的scala类没有区别
   */
 
-case class Iteblog(name:String)
+case class Iteblog(name:String){
+  def apply(name: String): Iteblog = {
+    println("its just overrider the apply")
+    new Iteblog(name)
+  }
+}
+class Person1(name: String,age: Int){
+//  //TODO  在类里面重写apply是没有用的
+//  def apply(name: String, age: Int): Person1 = {
+//    println("ts just overrider the apply "+name+age)
+//    new Person1(name, age)
+//  }
+
+  def test(): Unit ={
+    println(name+age)
+  }
+
+  //TODO 只能在类里面重载构造器this 而且左右只能是this 不能添加其他语句
+  def this(name: String) = {
+    this(name, 122)
+  }
+}
+
+object Person1 {
+  def apply(name: String, age: Int): Person1 = {
+    println("its coming in apply")
+    new Person1(name, age)
+  }
+}
 
 object TestScala {
 
@@ -47,6 +75,11 @@ object TestScala {
     println(iteblog.hashCode)
 
     println(iteblog2.hashCode)
+
+    val person1 = new Person1("tulip")
+    println(person1)
+
+    println(Person1("tulip",12))
   }
 
 }
