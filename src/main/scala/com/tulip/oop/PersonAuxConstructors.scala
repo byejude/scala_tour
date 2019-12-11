@@ -54,5 +54,8 @@ object TestAuxConstructor {
     println(new Person("Buck Trends4", 20))
     // Result: Person(Buck Trends4,Some(20),None)
 
+    //TODO case类会添加上toString
+    // 因此结果是Person(Buck Trends4,Some(20),Some(Address([unknown],Anytown-98765,CA-98765,98765)))
+    println(Person("Buck Trends4", Some(20), Some(a2)))
   }
 }
