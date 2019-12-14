@@ -9,7 +9,7 @@ val pf2: PartialFunction[Any, String] = {
 val pf = pf1 orElse pf2
 def tryPF(x: Any, f: PartialFunction[Any, Any]): String =
   try {
-    f(x,x).toString
+    f(x, x).toString
   } catch {
     case _: MatchError => "ERROR!"
   }

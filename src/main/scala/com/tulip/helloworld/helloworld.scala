@@ -1,8 +1,8 @@
 package com.tulip.helloworld
 
-object Helloworld{
+object Helloworld {
   def main(args: Array[String]) = {
-    val str = args.map(_.toUpperCase()).mkString("[","%","]")
+    val str = args.map(_.toUpperCase()).mkString("[", "%", "]")
     println(str)
   }
 }

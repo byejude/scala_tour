@@ -17,10 +17,10 @@ def doWork(index: Int) = {
     doWork(index)
   }
   future onComplete {
-    case Success(x) =>  println(s"success and return is $x")
+    case Success(x) => println(s"success and return is $x")
     case Failure(t) => println(s"An error has occured: $t")
   }
 }
 
-sleep(1000)  // Wait long enough for the "work" to finish.
+sleep(1000) // Wait long enough for the "work" to finish.
 println("Finito!")

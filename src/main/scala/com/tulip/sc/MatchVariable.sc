@@ -20,5 +20,5 @@ def checkY(y: Int, s: Seq[Any]): Unit = {
   }
 }
 
-checkY(100,Seq(1,2,3,4,100,99))
+checkY(100, Seq(1, 2, 3, 4, 100, 99))
 

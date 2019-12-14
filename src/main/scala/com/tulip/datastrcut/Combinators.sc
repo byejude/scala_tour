@@ -1,12 +1,12 @@
 object Combinators1 {
-  def map[A,B](list: List[A])(f: (A) => B): List[B] = list map f
+  def map[A, B](list: List[A])(f: (A) => B): List[B] = list map f
 }
 
 object Combinators {
-  def map[A,B](f:  (A) => B)(list: List[A]): List[B] = list map f
+  def map[A, B](f: (A) => B)(list: List[A]): List[B] = list map f
 }
 
-val intToString = (i:Int) => s"N=$i"
+val intToString = (i: Int) => s"N=$i"
 // Result: intToString: Int => String = <function1>
 
 val flist = Combinators.map(intToString) _

@@ -1,7 +1,8 @@
 //TODO 使用scalaz的Validation来收集一连串的错误
 
-import scalaz._,std.AllInstances._
+import scalaz._, std.AllInstances._
 import scalaz.Validation.FlatMap._
+
 def positiveValidx(i: Int): Validation[List[String], Int] = {
   if (i > 0) Success(i)
   else Failure(List(s"Nonpositive integer $i"))

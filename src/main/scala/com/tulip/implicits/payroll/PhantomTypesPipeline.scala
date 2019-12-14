@@ -6,9 +6,11 @@ package com.tulip.implicits.payroll
  */
 
 object Pipeline {
+
   implicit class toPiped[V](value: V) {
-     def flow [R] (f: V => R)= f(value)
+    def flow[R](f: V => R) = f(value)
   }
+
 }
 
 object CalculatePayroll2 {
@@ -21,7 +23,7 @@ object CalculatePayroll2 {
       minusInsurance flow
       minusTax flow
       minusFinalDeuctions
-     // pay1 flow minus401k  == minus401k(pay1)
+    // pay1 flow minus401k  == minus401k(pay1)
     //val xpay4 = minusFinalDeuctions(minusTax(minusInsurance(minus401k(start(e)))))
     val twoWeekGross = e.annualSalary / 26.0F
     val twoWeekNet = pay.netPay

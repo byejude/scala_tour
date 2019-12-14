@@ -110,9 +110,11 @@ println(addInts2("1", "x").isLeft)
 
 
 //TODO 使用try容器抛出异常
+
 import scala.util.{Success, Try}
+
 def positiveTry(i: Int): Try[Int] = Try {
-  assert (i > 0, s"nonpositive number $i")
+  assert(i > 0, s"nonpositive number $i")
   i
 }
 for {

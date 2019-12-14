@@ -9,10 +9,10 @@ val emptyMap = Map.empty[String, Int]
 
 def seqToString[T](seq: Seq[T]): String = seq match {
   //+: 元头列尾
-//  case head +: tail => {
-//    println(s"head is $head and tail is $tail")
-//    s"$head +: " + seqToString(tail)
-//  }
+  //  case head +: tail => {
+  //    println(s"head is $head and tail is $tail")
+  //    s"$head +: " + seqToString(tail)
+  //  }
 
   //:+ 列头元尾
   // case head :+ tail => {
@@ -22,8 +22,8 @@ def seqToString[T](seq: Seq[T]): String = seq match {
 
   //函数表达
   case +:(head, tail) => {
-      println(s"head is $head and tail is $tail")
-      s"$head +: " + seqToString(tail)
+    println(s"head is $head and tail is $tail")
+    s"$head +: " + seqToString(tail)
   }
   case Nil => "Nil"
 }

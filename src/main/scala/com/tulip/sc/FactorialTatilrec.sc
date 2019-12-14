@@ -1,12 +1,13 @@
 import scala.annotation.tailrec
+
 def factorial(i: BigInt): BigInt = {
   @tailrec
-  def fact(i: BigInt,accumlator: BigInt):BigInt = {
-    if(i == 1) accumlator
-    else fact(i - 1,i * accumlator)
+  def fact(i: BigInt, accumlator: BigInt): BigInt = {
+    if (i == 1) accumlator
+    else fact(i - 1, i * accumlator)
   }
 
-  fact(i,1)
+  fact(i, 1)
 }
 
 for (i <- 1 to 1000000)

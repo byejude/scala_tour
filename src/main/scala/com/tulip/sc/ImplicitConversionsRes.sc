@@ -1,4 +1,5 @@
 import scala.language.implicitConversions
+
 //warning: use :paste
 case class Foo(s: String)
 
@@ -10,7 +11,7 @@ object Foo {
 }
 
 // it will override the fromString
-implicit def OverrideFromString(s: String): Foo = Foo(s+"Override")
+implicit def OverrideFromString(s: String): Foo = Foo(s + "Override")
 
 class Test {
   def m1(foo: Foo) = println(foo.toString)

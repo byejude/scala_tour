@@ -1,14 +1,15 @@
 import scalaz._, std.AllInstances._
+
 /** 对用户名进行验证；用户名必须非空并且只能包含字母。 */
 def validName(key: String, name: String):
-Validation[List[String], List[(String,Any)]] = {
+Validation[List[String], List[(String, Any)]] = {
   val n = name.trim // remove whitespace
   if (n.length > 0 && n.matches("""^\p{Alpha}$""")) Success(List(key -> n))
   else Failure(List(s"Invalid $key <$n>"))
 }
 /** 验证字符串能否转换为大于0的整数。 */
 def positive(key: String, n: String):
-Validation[List[String], List[(String,Any)]] = {
+Validation[List[String], List[(String, Any)]] = {
   try {
     val i = n.toInt
     if (i > 0) Success(List(key -> i))
@@ -19,7 +20,7 @@ Validation[List[String], List[(String,Any)]] = {
   }
 }
 def validateForm(firstName: String, lastName: String, age: String):
-Validation[List[String], List[(String,Any)]] = {
+Validation[List[String], List[(String, Any)]] = {
   validName("first-name", firstName) +++ validName("last-name", lastName) +++
     positive("age", age)
 }
