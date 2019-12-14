@@ -4,30 +4,30 @@ package com.tulip.oop
  * Author: Tulip
  * Date: 2019/12/14 20:55
  */
-case class Address(street: String, city: String, state: String, zip: String)
+case class OfficeAddress(street: String, city: String, state: String, zip: String)
 
-object Address {
+object OfficeAddress {
   def apply(zip: String) =
-    new Address(
-      "[unknown]", Address.zipToCity(zip), Address.zipToState(zip), zip)
+    new OfficeAddress(
+      "[unknown]", OfficeAddress.zipToCity(zip), OfficeAddress.zipToState(zip), zip)
 
   def zipToCity(zip: String) = s"Anytown-$zip"
 
   def zipToState(zip: String) = s"CA-$zip"
 }
 
-trait PersonState {
+trait HumanState {
   val name: String
   val age: Option[Int]
-  val address: Option[Address]
+  val OfficeAddress: Option[OfficeAddress]
 
 
 }
 
-case class Person(
+case class Human(
                    name: String,
                    age: Option[Int] = None,
-                   address: Option[Address] = None) extends PersonState
+                   OfficeAddress: Option[OfficeAddress] = None) extends HumanState
 
 trait EmployeeState {
   val title: String
@@ -37,7 +37,7 @@ trait EmployeeState {
 case class Employee(
                      name: String,
                      age: Option[Int] = None,
-                     address: Option[Address] = None,
+                     OfficeAddress: Option[OfficeAddress] = None,
                      title: String = "[unknown]",
                      manager: Option[Employee] = None)
-  extends PersonState with EmployeeState
+  extends HumanState with EmployeeState

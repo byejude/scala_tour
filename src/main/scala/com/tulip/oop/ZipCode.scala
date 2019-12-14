@@ -9,8 +9,14 @@ case class ZipCode(zip: String, extension: Option[String] = None) {
   // 这样,它将始终首先被初始化.不然会报scala.UninitializedFieldError
   protected val zipRE = """(\d){5}""".r
   protected val extRE = """(\d){4}""".r
-  require(validUSPS(zip, extension), // <1>
-    s"Invalid Zip+4 specified: $toString")
+  //require前者为false后者消息会包装在一个IllegalArgumentException
+
+  require(validUSPS(zip, extension),
+    println(s"Invalid Zip+4 specified: $toString"))
+
+
+  testDefCall(println("test"), zip=>println("test2"+zip))
+
 
   /**
    * Is it a real US Postal Service zip code?
@@ -21,6 +27,16 @@ case class ZipCode(zip: String, extension: Option[String] = None) {
       case (zipRE(_), Some(extRE(_))) => true
       case (_, _) => false
     }
+
+  //TODO fp中 当参数函数在使用前会被执行 waring 这句话会造成歧义
+  def testDefCall( message: => Any,f:  String=>Any)= {
+    println("it into inner 1"+message);
+    if (true){
+      println("it into inner 2"+f("test2222"));
+    }
+
+
+  }
 
   override def toString =
     if (extension != None) s"$zip-${extension.get}" else zip.toString
@@ -33,35 +49,35 @@ object ZipCode {
 
 object ZipCodeTest {
   def main(args: Array[String]): Unit = {
-    println(ZipCode("12345"))
-    // Result: ZipCode = 12345
-
-    println(ZipCode("12345", Some("6789")))
-    // Result: ZipCode = 12345-6789
-
-    println(ZipCode("12345", "6789"))
-    // Result: ZipCode = 12345-6789
-
-    Seq("0", "1", "12", "123", "1234", "123456",
-      "1234e", "123d5", "12c45", "1b345", "a2345") foreach { z =>
-      try {
-        println(ZipCode(z, "6789"))
-      } catch {
-        case e: java.lang.IllegalArgumentException => // expected
-      }
-      try {
-        println(ZipCode(z))
-      } catch {
-        case e: java.lang.IllegalArgumentException => // expected
-      }
-    }
+//    println(ZipCode("12345"))
+//    // Result: ZipCode = 12345
+//
+//    println(ZipCode("12345", Some("6789")))
+//    // Result: ZipCode = 12345-6789
+//
+//    println(ZipCode("12345", "6789"))
+//    // Result: ZipCode = 12345-6789
+//
+//    Seq("0", "1", "12", "123", "1234", "123456",
+//      "1234e", "123d5", "12c45", "1b345", "a2345") foreach { z =>
+//      try {
+//        println(ZipCode(z, "6789"))
+//      } catch {
+//        case e: java.lang.IllegalArgumentException => // expected
+//      }
+//      try {
+//        println(ZipCode(z))
+//      } catch {
+//        case e: java.lang.IllegalArgumentException => // expected
+//      }
+//    }
 
     Seq("0", "1", "12", "123", "12345",
       "123d", "12c4", "1b34", "a234") foreach { e =>
       try {
         println(ZipCode("12345", e)) // Invalid Zip+4 specified: 12345-0
       } catch {
-        case e: java.lang.IllegalArgumentException => // expected
+        case e: java.lang.IllegalArgumentException => println("error!")// expected
       }
 
     }
