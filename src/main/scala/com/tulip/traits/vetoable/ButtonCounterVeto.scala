@@ -1,7 +1,7 @@
 package com.tulip.traits.vetoable
 
 import com.tulip.traits._
-import com.tulip.traits.ui2.{Clickable, ObservableClicks}
+import com.tulip.traits.ui2.{ButtonTraits, Clickable, ObservableClicks}
 
 /**
  * Author: Tulip
@@ -20,7 +20,7 @@ class ClickCountObserver extends Observer[Clickable] {
 object ButtonCounterVeto {
   def main(args: Array[String]): Unit = {
     val button =
-      new Button("Click Me!") with ObservableClicks with VetoableClicks {
+      new ButtonTraits("Click Me!") with ObservableClicks with VetoableClicks {
         override val maxAllowed = 2
       }
 
