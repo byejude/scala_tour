@@ -4,16 +4,16 @@ package com.tulip.traits
  * Author: Tulip
  * Date: 2019/12/14 23:09
  */
-trait Observer[-State] {                                             // <1>
+trait Observer[-State] {
   def receiveUpdate(state: State): Unit
 }
 
-trait Subject[State] {                                               // <2>
-  private var observers: List[Observer[State]] = Nil                 // <3>
+trait Subject[State] {
+  private var observers: List[Observer[State]] = Nil
 
-  def addObserver(observer:Observer[State]): Unit =                  // <4>
-    observers ::= observer                                           // <5>
+  def addObserver(observer: Observer[State]): Unit =
+    observers ::= observer
 
-  def notifyObservers(state: State): Unit =                          // <6>
+  def notifyObservers(state: State): Unit =
     observers foreach (_.receiveUpdate(state))
 }

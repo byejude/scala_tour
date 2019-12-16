@@ -7,6 +7,7 @@ package com.tulip.traits
 
 class ButtonCountObserver extends Observer[Button] {
   var count = 0
+
   def receiveUpdate(state: Button): Unit = {
     println("I receive it! and count!")
     count += 1
@@ -16,8 +17,8 @@ class ButtonCountObserver extends Observer[Button] {
 object ButtonCounter {
   def main(args: Array[String]): Unit = {
     val button = new ObservableButton("Click Me!")
-    val bco1   = new ButtonCountObserver
-    val bco2   = new ButtonCountObserver
+    val bco1 = new ButtonCountObserver
+    val bco2 = new ButtonCountObserver
 
     button.addObserver(bco1)
     button.addObserver(bco2)
