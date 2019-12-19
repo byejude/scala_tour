@@ -13,4 +13,3 @@ println(list ::: list2) //输出: List(1, 2, 3, A, B)
 // ++ 用于连接两个集合，list ++ list2
 println(list ++ list2) //输出: List(1, 2, 3, A, B)
 
-
