@@ -24,6 +24,7 @@ libraryDependencies ++= {
     "com.typesafe.akka"      %% "akka-slf4j"      % versions("akka"),
     "ch.qos.logback"          % "logback-classic" % "1.2.3",
     "org.scalaz"             %% "scalaz-core"     % "7.2.27",
+    "org.scala-lang.modules" %% "scala-parallel-collections" % "0.2.0",
     "org.scalacheck"         %% "scalacheck"      % "1.14.1" % "test",
     "org.scalatest"          %% "scalatest"       % "3.0.8"  % "test", // threading the needle on versions...
     "org.specs2"             %% "specs2-core"     % "4.5.1"  % "test",
@@ -111,6 +112,7 @@ lazy val scalacOptions1213Compile = Seq(
   "-Ywarn-unused:imports",             // Warn if an import selector is not referenced.
   "-Ywarn-unused:locals",              // Warn if a local definition is unused.
   "-Ywarn-unused:params",              // Warn if a value parameter is unused.
+  "org.scala-lang.modules" %% "scala-parallel-collections" % "0.2.0",
   // Recommended, but turned off because it causes problems with the macro example, metaprogramming.invariant
   //"-Ywarn-unused:patvars",             // Warn if a variable bound in a pattern is unused.
   "-Ywarn-unused:privates"             // Warn if a private member is unused.

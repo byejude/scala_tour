@@ -82,7 +82,5 @@ calcLinearization(new C1, "C1 ")
  * (4) 在类型线性化层次结构末尾处添加 AnyRef 和 Any 类型。
  * 如果是对价值类执行线性化算法，请使用 AnyVal 类型替代 AnyRef 类型。
  *
- *
- *
  */
-/
+

@@ -54,7 +54,7 @@ object Demo2 {
   //重写equals之前的测试
   println("ok" == "ok") //true,调用的是equals,但由于是String类型,其重写了equals方法,比较的是值
   println("ok" == null) //false,调用eq,比较的是内存地址
-  println(null == null) //true,调用eq,比较的是内存地址
+  //println(null == null) //true,调用eq,比较的是内存地址
   println("ok".equals("ok")); //true
 
   println(s1 == s2); //false,未重写equals,比较的地址
