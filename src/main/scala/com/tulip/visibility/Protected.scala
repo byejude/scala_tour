@@ -9,7 +9,7 @@ package scopeA {
 
     class Nested {
       protected val nestedField = 1
-      val nField = new Nested().nestedField //todo protected控制类区域可以访问
+      val nField = new Nested().nestedField
     }
 
     protected val nested = new Nested
@@ -19,6 +19,7 @@ package scopeA {
   class ProtectedClass2 extends ProtectedClass1(1) {
     val field1 = protectedField1
     val field2 = protectedField2
+    //todo protected控制类区域可以访问 需要继承关系
 //    val nField = new Nested().nestedField  // ERROR
 //    val nField = nested.nestedField  // ERROR
   }
