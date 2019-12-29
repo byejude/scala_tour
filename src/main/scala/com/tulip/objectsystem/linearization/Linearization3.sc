@@ -28,3 +28,4 @@ class C2 extends T1 with T2 with T3 {
 
 val c2 = new C2
 c2.m("")
+//TODO 调用方法线性算法从本身至继承关系从右向左，与初始化相反
