@@ -19,7 +19,7 @@ object OptionF extends FunctorFp[Option] {
 object FunctorFpObj {
   def map[A, A2, B](func: A => A2)(f: A2 => B): A => B = {
     val functorFp = new FunctorFp[({type r[q] = A => q})#r] {
-      override def map[A3, B](fa: A => A3)(f: A3 => B): A => B = (a: A) => f(fa(a))
+      override def map[A3, B1](fa: A => A3)(f: A3 => B1): A => B1 = (a: A) => f(fa(a))
     }
     functorFp.map(func)(f)
   }
@@ -28,16 +28,16 @@ object FunctorFpObj {
 object AppFunctorFp extends App {
   val fii: Int => Int = i => i * 2
   val fid: Int => Double = i => 2.1 * i
-  val fds: Double => String = d => d.toString
-  SeqF.map(List(1, 2, 3, 4))(fii) // Seq[Int]: List(2, 4, 6, 8)
-  SeqF.map(List.empty[Int])(fii) // Seq[Int]: List()
-  OptionF.map(Some(2))(fii) // Option[Int]: Some(4)
-  OptionF.map(Option.empty[Int])(fii) // Option[Int]: None
+  val fds: Double => String = d => d.toString+"its outer!"
+  println(SeqF.map(List(1, 2, 3, 4))(fii)    ) // Seq[Int]: List(2, 4, 6, 8)
+  println(SeqF.map(List.empty[Int])(fii)     ) // Seq[Int]: List()
+  println(OptionF.map(Some(2))(fii)          ) // Option[Int]: Some(4)
+  println(OptionF.map(Option.empty[Int])(fii)) // Option[Int]: None
   val fa = FunctorFpObj.map(fid)(fds)
-  fa(2) // String: 4.2
-  // val fb = FunctionF.map(fid)(fds)
+  println(fa(2)) // String: 4.2
+  // val fb = FunctorFpObj.map(fid)(fds)
   val fb = FunctorFpObj.map[Int, Double, String](fid)(fds)
-  fb(2)
+  println(fb(2))
   val fc = fds compose fid
-  fc(2) // String: 4.2
+  println(fc(2)) // String: 4.2
 }
