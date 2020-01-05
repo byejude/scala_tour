@@ -7,14 +7,14 @@ import scala.util.Try
  * Date: 2020/1/3 22:17
  */
 object Messages {
-  sealed trait Request {
+  sealed trait KeyedRequest {
     val key: Long
   }
 
-  case class Create(key: Long,value: String) extends Request
-  case class Read(key: Long) extends Request
-  case class Update(key: Long, value: String) extends Request
-  case class Delete(key: Long) extends Request
+  case class Create(key: Long,value: String) extends KeyedRequest
+  case class Read(key: Long) extends KeyedRequest
+  case class Update(key: Long, value: String) extends KeyedRequest
+  case class Delete(key: Long) extends KeyedRequest
 
   case class Response(result:Try[String])
 
