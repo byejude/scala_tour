@@ -5,18 +5,29 @@ package com.tulip.dynamic
  * Date: 2020/1/5 22:42
  */
 
-import scala.language.dynamics // <1>
+import scala.language.dynamics
+
+/**
+ *foo.method("blah")      ~~> foo.applyDynamic("method")("blah")
+ * foo.method(x = "blah")  ~~> foo.applyDynamicNamed("method")(("x", "blah"))
+ * foo.method(x = 1, 2)    ~~> foo.applyDynamicNamed("method")(("x", 1), ("", 2))
+ * foo.field           ~~> foo.selectDynamic("field")
+ * foo.varia = 10      ~~> foo.updateDynamic("varia")(10)
+ * foo.arr(10) = 13    ~~> foo.selectDynamic("arr").update(10, 13)
+ * foo.arr(10)         ~~> foo.applyDynamic("arr")(10)
+ * 动态调用类似于方法映射
+ */
 
 case class CLINQ[T](records: Seq[Map[String, T]]) extends Dynamic {
 
-  def selectDynamic(name: String): CLINQ[T] = // <2>
-    if (name == "all" || records.length == 0) this // <3>
+  def selectDynamic(name: String): CLINQ[T] =
+    if (name == "all" || records.length == 0) this
     else {
-      val fields = name.split("_and_") // <4>
+      val fields = name.split("_and_")
       val seed = Seq.empty[Map[String, T]]
       val newRecords = (records foldLeft seed) {
         (results, record) =>
-          val projection = record filter { // <5>
+          val projection = record filter {
             case (key, _) => fields contains key
           }
           // Drop records with no projection.
